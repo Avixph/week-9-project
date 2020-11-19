@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   const body = document.body;
 
   console.log(body);
@@ -21,6 +21,21 @@ window.onload = function() {
 
   // 5. Congratulations! Move on to part 2!
 
+  const duck = document.createElement("div");
+  duck.classList.add("ducky");
+  document.body.appendChild(duck);
+
+  let flap = setInterval(function wingFlap() {
+    duckElement.classList.toggle("flaping");
+  }, 250);
+
+  function moveDuck() {
+    let cssTop = Math.random() * window.innerWidth + "px";
+    let cssLeft = Math.random() * window.innerHeight + "px";
+
+    duck.style.top = cssTop;
+    duck.style.left = cssLeft;
+  }
   // ---------------------------- PART 2 ---------------------------------
 
   // 6. Now we will organize this better. Let's create
