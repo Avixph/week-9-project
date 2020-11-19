@@ -21,21 +21,6 @@ window.onload = function () {
 
   // 5. Congratulations! Move on to part 2!
 
-  const duck = document.createElement("div");
-  duck.classList.add("ducky");
-  document.body.appendChild(duck);
-
-  let flap = setInterval(function wingFlap() {
-    duckElement.classList.toggle("flaping");
-  }, 250);
-
-  function moveDuck() {
-    let cssTop = Math.random() * window.innerWidth + "px";
-    let cssLeft = Math.random() * window.innerHeight + "px";
-
-    duck.style.top = cssTop;
-    duck.style.left = cssLeft;
-  }
   // ---------------------------- PART 2 ---------------------------------
 
   // 6. Now we will organize this better. Let's create
@@ -71,4 +56,69 @@ window.onload = function () {
   //     direction the duck is flying and change the way the duck is facing
 
   // Done, you have accomplish another level of skill
+
+  // -----------------------------------------------------------------------
+
+  // const duck = document.createElement("div");
+  // duck.classList.add("ducky");
+  // document.body.appendChild(duck);
+
+  // let flap = setInterval(function wingFlap() {
+  //   duckElement.classList.toggle("flaping");
+  // }, 250);
+
+  // function moveDuck() {
+  //   let cssTop = Math.random() * window.innerWidth + "px";
+  //   let cssLeft = Math.random() * window.innerHeight + "px";
+
+  //   duck.style.top = cssTop;
+  //   duck.style.left = cssLeft;
+  // }
+  // moveDuck();
+  // let duckMove = setInterval(moveDuck, 1000);
+  // return duck;
+
+  // ---------------------------- Complete ---------------------------------
+
+  function createDuck() {
+    const duck = document.createElement("div");
+    duck.classList.add("duck");
+    document.body.appendChild(duck);
+
+    let flap = setInterval(function wingFlap() {
+      duckElement.classList.toggle("flaping");
+    }, 250);
+
+    function moveDuck() {
+      let cssTop = Math.random() * window.innerWidth + "px";
+      let cssLeft = Math.random() * window.innerHeight + "px";
+
+      duck.style.top = cssTop;
+      duck.style.left = cssLeft;
+
+      function shootDuck() {
+        duck.classList.add("shot");
+
+        setTimeout(function () {
+          duck.remove();
+          checkForWinner();
+        }, 600);
+      }
+      duck.addEventListener("click", shootDuck);
+    }
+
+    moveDuck();
+    let duckMove = setInterval(moveDuck, 750);
+    return duck;
+  }
+
+  for (let i = 0; i < 5; i++) {
+    createDuck();
+  }
+
+  function checkForWinner() {
+    if (document.getElementsByClassName("duck").length === 0) {
+      alert("Congrats on the expert shooting !");
+    }
+  }
 };
